@@ -2,8 +2,12 @@ package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.DashPathEffect;
+import android.graphics.DiscretePathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathEffect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,18 +44,23 @@ public class Practice12PathEffectView extends View {
         super.onDraw(canvas);
 
         // 使用 Paint.setPathEffect() 来设置不同的 PathEffect
-
+        PathEffect pathEffect1 = new CornerPathEffect(20);
+        paint.setPathEffect(pathEffect1);
         // 第一处：CornerPathEffect
         canvas.drawPath(path, paint);
 
         canvas.save();
         canvas.translate(500, 0);
+        PathEffect pathEffect2 = new DiscretePathEffect(20,5);
+        paint.setPathEffect(pathEffect2);
         // 第二处：DiscretePathEffect
         canvas.drawPath(path, paint);
         canvas.restore();
 
         canvas.save();
         canvas.translate(0, 200);
+        PathEffect pathEffect3 = new DashPathEffect(new float[]{20,5},0);
+        paint.setPathEffect(pathEffect3);
         // 第三处：DashPathEffect
         canvas.drawPath(path, paint);
         canvas.restore();
